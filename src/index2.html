@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        height: 300px;
+        width: 250px;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        box-shadow: 10px 0 10px .25rem rgba(0, 0, 0, .25);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 40px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    input{
+        width: 200px;
+        height: 32px;
+        border: 1px solid #ced4da;
+        font-size: 15px;
+        color: #495057;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        padding-left: 5px;
+        font-family: Helvetica;
+       
+    }
+    .btn{
+        background-color: #1266F1;
+        color: #fff;
+        border: 1px solid #1266F1;
+        border-radius: 4px;
+        height: 34px;
+        width: 130px;
+        font-size: 15px;
+        font-weight: 400;
+    }
+</style>
+<body>
+    <div class="container">
+    <p class="para" style="display: none;"></p>
+    <input type='text' id='num'  placeholder="Song Name"/>
+    <input type="text" id="num2" placeholder="Song Url">
+    <button type='button' class="btn" value='Send' name='Send' onclick='send()'>
+        Send
+    </button>
+    </div>
+    <script>
+        function send() {
+            var number = {
+                value: document.getElementById('num').value,
+                path: document.getElementById('num2').value
+            }
+            var xhr = new window.XMLHttpRequest()
+            xhr.open('POST', '/added', true)
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+            xhr.send(JSON.stringify(number));
+            xhr.responseType = 'text';
+            xhr.onload = function () {
+               document.querySelector('.para').innerText= (xhr.response)+" Succefully addded to the db";
+               document.querySelector('.para').style="display:inline;"
+               setTimeout(function(){
+                document.querySelector('.para').innerText="";
+                document.querySelector('.para').style = "display:none;"
+               },3000)
+            };
+        }
+        document.querySelector('body').addEventListener('keydown',e=>{
+            if(e.keyCode==13)
+            {
+                send();
+            }
+        })
+    </script>
+</body>
+</html>

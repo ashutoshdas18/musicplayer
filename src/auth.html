@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        body{
+            min-height: 100vh;
+            background-image: linear-gradient(120deg,rgb(96, 255, 96),rgb(0, 152, 212));
+}
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            height: 300px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            padding: 80px 40px;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            align-items: center;
+
+        }
+
+        form>h1{
+            margin-bottom: 60px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input{
+            height: 34px;
+            width: 280px;
+            border: 1px solid #ced4da;
+            border-radius:.25rem  ;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            padding-left: 10px;
+            color: #495057;
+            font-size: 15px ;
+            font-family: Helvetica;
+            margin-bottom: 20px;
+
+        }
+        input:focus{
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem rgba(0,123,255,0.25);
+        }
+        .sub{
+            height: 36px;
+            width: 130px;
+            background-color: #1266F1;
+            color: #fff;
+            font-family: Helvetica;
+            font-size: 16px;
+            border:2px #1266F1 ;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    
+    <form action="/authed" method="post">
+        <h1>Log in</h1>
+        <input type="text" class="id" name="username" placeholder="User Name">
+        <input type="password" class="password" name="password" placeholder="Password">
+        <button type="submit" class="sub">Submit</button>
+    </form>
+</body>
+</html>

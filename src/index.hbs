@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<style>
+    audio{
+        display: none;
+        margin-top: 50px;
+    }
+</style>
+<body>
+    <input type='text' id='song-name' placeholder="Enter the songs" />
+    <button type='button' value='Enter' onclick='send()'>
+        Send
+    </button>
+    <audio src="test.mp3"controls></audio>
+    <script>
+        document.querySelector('#song-name').addEventListener('keydown',e=>{
+
+            if(e.keyCode === 13){
+                send();
+            }
+
+        })
+        function send() {
+            var number = {
+                value: document.getElementById('song-name').value
+            }
+            var xhr = new window.XMLHttpRequest()
+            xhr.open('POST', '/song', true)
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+            xhr.send(JSON.stringify(number))
+            xhr.responseType = 'text';
+            xhr.onload = function () {
+                if(xhr.response!=="Invalid Song")
+                {
+                document.querySelector('audio').src=xhr.response;
+                document.querySelector('audio').style.display="block";
+                }else{
+                    alert("Enter a valid song")
+                }
+            };
+            
+        }
+    </script>
+    
+</body>
+
+</html>
